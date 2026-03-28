@@ -16,9 +16,15 @@ const bootstrap = async () => {
   const app = express();
   const PORT = Number(process.env.PORT) || 3000;
 
-  app.use(logger);
-  app.use(express.json());
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'Server is running',
+    });
+  });
+
   app.use(cors());
+  app.use(express.json());
+  app.use(logger);
 
   app.use(notesRouter);
 
